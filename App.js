@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, StyleSheet} from 'react-native';
 import {Home} from './src/main/screens/Home';
 import {Header} from './src/main/components/Header';
-import {SuggestionList} from './src/main/components/SuggestionList';
+import {SuggestionList} from './src/main/containers/SuggestionList';
 
 export default function App() {
   return (

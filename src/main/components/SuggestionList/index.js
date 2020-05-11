@@ -1,9 +1,12 @@
 import React from 'react';
-import {FlatList, Text} from 'react-native';
+import {View, Text} from 'react-native';
+import {styles} from './styles';
 
-export const SuggestionList = () => {
-  const list = [{title: 'Top 10', key: '1'}, {title: 'Originales', key: '2'}];
+export const SuggestionListComponent = ({title, children}) => {
   return (
-    <FlatList data={list} renderItem={({item}) => <Text>{item.title}</Text>} />
+    <View style={styles.container}>
+      <Text style={styles.title}>{title}</Text>
+      {children}
+    </View>
   );
 };
