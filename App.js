@@ -1,7 +1,8 @@
 import React from 'react';
 import {Text, StyleSheet} from 'react-native';
 import {Home} from './src/main/screens/Home';
-import {Header} from './src/main/components/Header/index';
+import {Header} from './src/main/components/Header';
+import {SuggestionList} from './src/main/components/SuggestionList';
 
 export default function App() {
   return (
@@ -11,7 +12,7 @@ export default function App() {
       </Header>
       <Text>Buscador</Text>
       <Text>Categorias</Text>
-      <Text>Sugerencias</Text>
+      <SuggestionList />
     </Home>
   );
 }
