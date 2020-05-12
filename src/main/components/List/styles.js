@@ -3,7 +3,6 @@ import {StyleSheet} from 'react-native';
 export const styles = StyleSheet.create({
   container: {
     paddingVertical: 10,
-    flex: 1,
   },
   title: {
     fontWeight: 'bold',
@@ -11,5 +10,8 @@ export const styles = StyleSheet.create({
     fontSize: 20,
     marginBottom: 10,
     marginLeft: 8,
+  },
+  isFlex: {
+    flex: 1,
   },
 });

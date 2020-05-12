@@ -16,7 +16,6 @@ export default function App() {
 
       const categories = await Api.getMovies();
       setCategories(categories);
-      console.log(categories);
     })();
   }, []);
 

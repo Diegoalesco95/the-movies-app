@@ -2,7 +2,7 @@ import React from 'react';
 import {FlatList} from 'react-native';
 import {ListComponent} from '../components/List';
 import {Empty} from '../components/Empty';
-import {VerticalSeparator} from '../components/VerticalSeparator';
+import {Separator} from '../components/Separator';
 import {Movie} from '../components/Movie';
 
 export const SuggestionList = ({list}) => {
@@ -15,7 +15,7 @@ export const SuggestionList = ({list}) => {
         data={list}
         keyExtractor={KeyExtractor}
         ListEmptyComponent={() => <Empty text="No hay sugerencias ☹" />}
-        ItemSeparatorComponent={() => <VerticalSeparator />}
+        ItemSeparatorComponent={() => <Separator direction="vertical" />}
         renderItem={({item}) => <Movie {...item} />}
       />
     </ListComponent>

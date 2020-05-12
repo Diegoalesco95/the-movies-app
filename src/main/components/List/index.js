@@ -1,12 +1,22 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, ImageBackground} from 'react-native';
 import {styles} from './styles';
 
-export const ListComponent = ({title, children}) => {
+const background = '../../../assets/background.png';
+
+export const ListComponent = ({title, children, image}) => {
+  if (!image) {
+    return (
+      <View style={(styles.container, styles.isFlex)}>
+        <Text style={styles.title}>{title}</Text>
+        {children}
+      </View>
+    );
+  }
   return (
-    <View style={styles.container}>
+    <ImageBackground source={require(background)} style={styles.container}>
       <Text style={styles.title}>{title}</Text>
       {children}
-    </View>
+    </ImageBackground>
   );
 };

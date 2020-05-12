@@ -2,7 +2,7 @@ import React from 'react';
 import {FlatList} from 'react-native';
 import {ListComponent} from '../components/List';
 import {Empty} from '../components/Empty';
-import {VerticalSeparator} from '../components/VerticalSeparator';
+import {Separator} from '../components/Separator';
 import {Movie} from '../components/Movie';
 
 export const CategoryList = ({list}) => {
@@ -10,13 +10,13 @@ export const CategoryList = ({list}) => {
     return item.id.toString();
   };
   return (
-    <ListComponent title="Categorias">
+    <ListComponent title="Categorias" image={true}>
       <FlatList
         horizontal
         data={list}
         keyExtractor={KeyExtractor}
         ListEmptyComponent={() => <Empty text="No hay sugerencias ☹" />}
-        ItemSeparatorComponent={() => <VerticalSeparator />}
+        ItemSeparatorComponent={() => <Separator />}
         renderItem={({item}) => <Movie {...item} />}
       />
     </ListComponent>
