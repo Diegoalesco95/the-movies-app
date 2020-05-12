@@ -6,15 +6,13 @@ import {SuggestionList} from './src/main/containers/SuggestionList';
 import Api from './src/services/api';
 
 export default function App() {
-  const [movies, setMovies] = useState({});
+  const [movies, setMovies] = useState([]);
   useEffect(() => {
     (async () => {
       const movies = await Api.getSuggestion(10);
       setMovies(movies);
     })();
   }, []);
-
-  console.log('Estas son las pelis', movies);
 
   return (
     <Home>
@@ -23,7 +21,7 @@ export default function App() {
       </Header>
       <Text>Buscador</Text>
       <Text>Categorias</Text>
-      <SuggestionList />
+      <SuggestionList list={movies} />
     </Home>
   );
 }
