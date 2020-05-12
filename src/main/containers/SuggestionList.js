@@ -3,6 +3,7 @@ import {FlatList, Text} from 'react-native';
 import {SuggestionListComponent} from '../components/SuggestionList';
 import {Empty} from '../components/Empty';
 import {VerticalSeparator} from '../components/VerticalSeparator';
+import {Suggestion} from '../components/Suggestion';
 
 export const SuggestionList = () => {
   // const list = [];
@@ -16,7 +17,7 @@ export const SuggestionList = () => {
         data={list}
         ListEmptyComponent={() => <Empty text="No hay sugerencias ☹" />}
         ItemSeparatorComponent={() => <VerticalSeparator />}
-        renderItem={({item}) => <Text>{item.title}</Text>}
+        renderItem={({item}) => <Suggestion {...item} />}
       />
     </SuggestionListComponent>
   );
