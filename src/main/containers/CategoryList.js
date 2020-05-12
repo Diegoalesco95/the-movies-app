@@ -3,7 +3,7 @@ import {FlatList} from 'react-native';
 import {ListComponent} from '../components/List';
 import {Empty} from '../components/Empty';
 import {Separator} from '../components/Separator';
-import {Movie} from '../components/Movie';
+import {Category} from '../components/Category';
 
 export const CategoryList = ({list}) => {
   const KeyExtractor = item => {
@@ -15,9 +15,9 @@ export const CategoryList = ({list}) => {
         horizontal
         data={list}
         keyExtractor={KeyExtractor}
-        ListEmptyComponent={() => <Empty text="No hay sugerencias ☹" />}
+        ListEmptyComponent={() => <Empty text="No hay categorias ☹" />}
         ItemSeparatorComponent={() => <Separator />}
-        renderItem={({item}) => <Movie {...item} />}
+        renderItem={({item}) => <Category {...item} />}
       />
     </ListComponent>
   );
