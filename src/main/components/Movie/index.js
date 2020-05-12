@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Image, Text} from 'react-native';
 import {styles} from './styles';
 
-export const Suggestion = ({
+export const Movie = ({
   title,
   genres,
   medium_cover_image: cover_img,

@@ -5,13 +5,14 @@ import {Empty} from '../components/Empty';
 import {VerticalSeparator} from '../components/VerticalSeparator';
 import {Movie} from '../components/Movie';
 
-export const SuggestionList = ({list}) => {
+export const CategoryList = ({list}) => {
   const KeyExtractor = item => {
     return item.id.toString();
   };
   return (
-    <ListComponent title="Recomendado para ti">
+    <ListComponent title="Categorias">
       <FlatList
+        horizontal
         data={list}
         keyExtractor={KeyExtractor}
         ListEmptyComponent={() => <Empty text="No hay sugerencias ☹" />}

@@ -2,15 +2,21 @@ import React, {useEffect, useState} from 'react';
 import {Text, StyleSheet} from 'react-native';
 import {Home} from './src/main/screens/Home';
 import {Header} from './src/main/components/Header';
+import {CategoryList} from './src/main/containers/CategoryList';
 import {SuggestionList} from './src/main/containers/SuggestionList';
 import Api from './src/services/api';
 
 export default function App() {
-  const [movies, setMovies] = useState([]);
+  const [suggestion, setSuggestion] = useState([]);
+  const [categories, setCategories] = useState([]);
   useEffect(() => {
     (async () => {
-      const movies = await Api.getSuggestion(10);
-      setMovies(movies);
+      const suggestion = await Api.getSuggestion(10);
+      setSuggestion(suggestion);
+
+      const categories = await Api.getMovies();
+      setCategories(categories);
+      console.log(categories);
     })();
   }, []);
 
@@ -20,8 +26,8 @@ export default function App() {
         <Text style={styles.menu}>Menu</Text>
       </Header>
       <Text>Buscador</Text>
-      <Text>Categorias</Text>
-      <SuggestionList list={movies} />
+      <CategoryList list={categories} />
+      <SuggestionList list={suggestion} />
     </Home>
   );
 }
