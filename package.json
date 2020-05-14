@@ -1,5 +1,5 @@
 {
-  "name": "theMoviesApp",
+  "name": "the-movies-app",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -10,8 +10,12 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-community/slider": "^2.0.9",
     "react": "16.11.0",
-    "react-native": "0.62.2"
+    "react-native": "0.62.2",
+    "react-native-orientation-locker": "^1.1.8",
+    "react-native-vector-icons": "^6.6.0",
+    "react-native-video": "^4.4.5"
   },
   "devDependencies": {
     "@babel/core": "7.9.6",
