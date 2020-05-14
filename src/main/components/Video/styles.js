@@ -1,16 +1,18 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
-    paddingTop: '56.25%',
+    flex: 1,
   },
   video: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
-    backgroundColor: '#000',
+    height: Dimensions.get('window').width * (9 / 16),
+    width: Dimensions.get('window').width,
+    backgroundColor: 'black',
+  },
+  fullscreenVideo: {
+    height: Dimensions.get('window').width,
+    width: Dimensions.get('window').height,
+    backgroundColor: 'black',
   },
   overlay: {
     position: 'absolute',

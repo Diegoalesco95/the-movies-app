@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Text, StyleSheet} from 'react-native';
+import {Text, StyleSheet, ScrollView} from 'react-native';
 import {Home} from './src/main/screens/Home';
 import {Header} from './src/main/components/Header';
 import {CategoryList} from './src/main/containers/CategoryList';
@@ -22,13 +22,15 @@ export default function App() {
 
   return (
     <Home>
-      <Header>
-        <Text style={styles.menu}>Menu</Text>
-      </Header>
-      <Player />
-      <Text>Buscador</Text>
-      <CategoryList list={categories} />
-      <SuggestionList list={suggestion} />
+      <ScrollView>
+        <Header>
+          <Text style={styles.menu}>Menu</Text>
+        </Header>
+        <Player />
+        <Text>Buscador</Text>
+        <CategoryList list={categories} />
+        <SuggestionList list={suggestion} />
+      </ScrollView>
     </Home>
   );
 }
