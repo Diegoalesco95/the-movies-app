@@ -4,8 +4,9 @@ import {ListComponent} from '../components/List';
 import {Empty} from '../components/Empty';
 import {Separator} from '../components/Separator';
 import {Movie} from '../components/Movie';
+import {connect} from 'react-redux';
 
-export const SuggestionList = ({list}) => {
+const SuggestionList = ({list}) => {
   const KeyExtractor = item => {
     return item.id.toString();
   };
@@ -21,3 +22,11 @@ export const SuggestionList = ({list}) => {
     </ListComponent>
   );
 };
+
+const mapStateToProps = state => {
+  return {
+    list: state.suggestionList,
+  };
+};
+
+export default connect(mapStateToProps)(SuggestionList);

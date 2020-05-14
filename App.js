@@ -1,37 +1,46 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {Text, StyleSheet, ScrollView} from 'react-native';
 import {Home} from './src/main/screens/Home';
 import {Header} from './src/main/components/Header';
-import {CategoryList} from './src/main/containers/CategoryList';
-import {SuggestionList} from './src/main/containers/SuggestionList';
+import CategoryList from './src/main/containers/CategoryList';
+import SuggestionList from './src/main/containers/SuggestionList';
 import {Player} from './src/main/containers/Player';
-import Api from './src/services/api';
+import {Provider} from 'react-redux';
+import store from './src/store/store';
+
+import {getSuggestion, getMovies} from './src/services/api';
+import {GET_CATEGORIES, GET_SUGGESTIONS} from './src/providers/types/index';
 
 export default function App() {
-  const [suggestion, setSuggestion] = useState([]);
-  const [categories, setCategories] = useState([]);
   useEffect(() => {
     (async () => {
-      const suggestion = await Api.getSuggestion(10);
-      setSuggestion(suggestion);
-
-      const categories = await Api.getMovies();
-      setCategories(categories);
+      const categories = await getMovies();
+      store.dispatch({
+        type: GET_CATEGORIES,
+        payload: categories,
+      });
+      const suggestion = await getSuggestion(10);
+      store.dispatch({
+        type: GET_SUGGESTIONS,
+        payload: suggestion,
+      });
     })();
   }, []);
 
   return (
-    <Home>
-      <ScrollView>
-        <Header>
-          <Text style={styles.menu}>Menu</Text>
-        </Header>
-        <Player />
-        <Text>Buscador</Text>
-        <CategoryList list={categories} />
-        <SuggestionList list={suggestion} />
-      </ScrollView>
-    </Home>
+    <Provider store={store}>
+      <Home>
+        <ScrollView>
+          <Header>
+            <Text style={styles.menu}>Menu</Text>
+          </Header>
+          <Player />
+          <Text>Buscador</Text>
+          <CategoryList />
+          <SuggestionList />
+        </ScrollView>
+      </Home>
+    </Provider>
   );
 }
 

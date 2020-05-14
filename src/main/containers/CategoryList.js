@@ -4,6 +4,7 @@ import {ListComponent} from '../components/List';
 import {Empty} from '../components/Empty';
 import {Separator} from '../components/Separator';
 import {Category} from '../components/Category';
+import {connect} from 'react-redux';
 
 export const CategoryList = ({list}) => {
   const KeyExtractor = item => {
@@ -22,3 +23,11 @@ export const CategoryList = ({list}) => {
     </ListComponent>
   );
 };
+
+const mapStateToProps = state => {
+  return {
+    list: state.categoriesList,
+  };
+};
+
+export default connect(mapStateToProps)(CategoryList);

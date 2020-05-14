@@ -1,18 +1,14 @@
 const BASE_API = 'https://yts.mx/api/v2/';
 
-class Api {
-  async getSuggestion(id) {
-    const query = await fetch(
-      `${BASE_API}movie_suggestions.json?movie_id=${id}`,
-    );
-    const {data} = await query.json();
-    return data.movies;
-  }
-  async getMovies() {
-    const query = await fetch(`${BASE_API}list_movies.json`);
-    const {data} = await query.json();
-    return data.movies;
-  }
-}
-
-export default new Api();
+export const getSuggestion = async id => {
+  const query = await fetch(
+    `${BASE_API}movie_suggestions.json?movie_id=${id}`,
+  ).then(response => response.json().then(({data}) => data.movies));
+  return query;
+};
+export const getMovies = async () => {
+  const query = await fetch(`${BASE_API}list_movies.json`).then(response =>
+    response.json().then(({data}) => data.movies),
+  );
+  return query;
+};
