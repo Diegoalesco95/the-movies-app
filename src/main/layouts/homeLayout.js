@@ -3,6 +3,7 @@ import {Text, StyleSheet} from 'react-native';
 
 import {Home} from '../screens/Home';
 import {Header} from '../components/Header';
+import {Search} from '../components/Search';
 
 import CategoryList from '../containers/CategoryList';
 import SuggestionList from '../containers/SuggestionList';
@@ -28,7 +29,7 @@ const HomeLayout = ({getCategoriesList, getSuggestionList, selectedMovie}) => {
       <Header>
         <Text style={styles.menu}>Menu</Text>
       </Header>
-      <Text>Buscador</Text>
+      <Search />
       <CategoryList />
       <SuggestionList />
     </Home>
