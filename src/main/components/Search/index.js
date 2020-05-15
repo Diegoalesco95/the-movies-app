@@ -8,8 +8,6 @@ import {getSearchMovie} from '../../../providers/actions/index';
 
 const Search = ({getSearchMovie}) => {
   const [text, setText] = useState('');
-  console.log('Esto es lo que se busca', text);
-
   const handleSubmit = () => {
     getSearchMovie(text);
   };
