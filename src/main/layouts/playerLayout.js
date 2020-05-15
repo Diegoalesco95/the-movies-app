@@ -27,8 +27,6 @@ const PlayerLayout = ({deleteMovie, movie}) => {
 };
 
 const mapStateToProps = state => {
-  console.log(state);
-
   return {
     movie: state.selectedMovie,
   };

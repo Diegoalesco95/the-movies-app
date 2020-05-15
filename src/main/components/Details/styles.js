@@ -4,6 +4,7 @@ export const styles = StyleSheet.create({
   container: {},
   trailer: {
     height: 200,
+    marginBottom: 10,
   },
   details: {
     flexDirection: 'row',

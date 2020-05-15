@@ -8,6 +8,7 @@ const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
   blacklist: ['selectedMovie'],
+  timeout: null,
 };
 
 const persistedReducer = persistReducer(persistConfig, reducer);
