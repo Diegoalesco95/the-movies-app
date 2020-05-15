@@ -1,55 +1,17 @@
-import React, {useEffect} from 'react';
-import {Text, StyleSheet, ScrollView} from 'react-native';
-import {Home} from './src/main/screens/Home';
-import {Header} from './src/main/components/Header';
-import CategoryList from './src/main/containers/CategoryList';
-import SuggestionList from './src/main/containers/SuggestionList';
-import {Player} from './src/main/containers/Player';
+import React from 'react';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import {store, persistor} from './src/store/store';
 
-import {getSuggestion, getMovies} from './src/services/api';
-import {GET_CATEGORIES, GET_SUGGESTIONS} from './src/providers/types/index';
+import AppLayout from './src/main/layouts/appLayout';
 import {Loading} from './src/main/components/Loading';
 
 export default function App() {
-  useEffect(() => {
-    (async () => {
-      const categories = await getMovies();
-      store.dispatch({
-        type: GET_CATEGORIES,
-        payload: categories,
-      });
-      const suggestion = await getSuggestion(10);
-      store.dispatch({
-        type: GET_SUGGESTIONS,
-        payload: suggestion,
-      });
-    })();
-  }, []);
-
   return (
     <Provider store={store}>
       <PersistGate loading={<Loading />} persistor={persistor}>
-        <Home>
-          <ScrollView>
-            <Header>
-              <Text style={styles.menu}>Menu</Text>
-            </Header>
-            <Player />
-            <Text>Buscador</Text>
-            <CategoryList />
-            <SuggestionList />
-          </ScrollView>
-        </Home>
+        <AppLayout />
       </PersistGate>
     </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  menu: {
-    color: '#f0f5f6',
-  },
-});

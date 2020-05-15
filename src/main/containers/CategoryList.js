@@ -6,7 +6,7 @@ import {Separator} from '../components/Separator';
 import {Category} from '../components/Category';
 import {connect} from 'react-redux';
 
-export const CategoryList = ({list}) => {
+const CategoryList = ({list}) => {
   const KeyExtractor = item => {
     return item.id.toString();
   };
