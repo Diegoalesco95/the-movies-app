@@ -6,7 +6,8 @@ import CategoryList from './src/main/containers/CategoryList';
 import SuggestionList from './src/main/containers/SuggestionList';
 import {Player} from './src/main/containers/Player';
 import {Provider} from 'react-redux';
-import store from './src/store/store';
+import {PersistGate} from 'redux-persist/integration/react';
+import {store, persistor} from './src/store/store';
 
 import {getSuggestion, getMovies} from './src/services/api';
 import {GET_CATEGORIES, GET_SUGGESTIONS} from './src/providers/types/index';
@@ -29,17 +30,19 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <Home>
-        <ScrollView>
-          <Header>
-            <Text style={styles.menu}>Menu</Text>
-          </Header>
-          <Player />
-          <Text>Buscador</Text>
-          <CategoryList />
-          <SuggestionList />
-        </ScrollView>
-      </Home>
+      <PersistGate loading={<Text>Cargando...</Text>} persistor={persistor}>
+        <Home>
+          <ScrollView>
+            <Header>
+              <Text style={styles.menu}>Menu</Text>
+            </Header>
+            <Player />
+            <Text>Buscador</Text>
+            <CategoryList />
+            <SuggestionList />
+          </ScrollView>
+        </Home>
+      </PersistGate>
     </Provider>
   );
 }
