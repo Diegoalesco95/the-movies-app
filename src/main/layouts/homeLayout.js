@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
-import {Text, StyleSheet, ScrollView} from 'react-native';
+import {Text, StyleSheet} from 'react-native';
 
 import {Home} from '../screens/Home';
 import {Header} from '../components/Header';
-import {Player} from '../containers/Player';
+
 import CategoryList from '../containers/CategoryList';
 import SuggestionList from '../containers/SuggestionList';
 
@@ -12,24 +12,27 @@ import {
   getCategoriesList,
   getSuggestionList,
 } from '../../providers/actions/index';
+import {PlayerLayout} from './playerLayout';
 
-const AppLayout = ({getCategoriesList, getSuggestionList}) => {
+const HomeLayout = ({getCategoriesList, getSuggestionList, selectedMovie}) => {
+  console.log('selectedMovie', selectedMovie);
+
   useEffect(() => {
     getCategoriesList();
     getSuggestionList(20);
   }, [getCategoriesList, getSuggestionList]);
 
+  if (selectedMovie) {
+    return <PlayerLayout />;
+  }
   return (
     <Home>
-      <ScrollView>
-        <Header>
-          <Text style={styles.menu}>Menu</Text>
-        </Header>
-        <Player />
-        <Text>Buscador</Text>
-        <CategoryList />
-        <SuggestionList />
-      </ScrollView>
+      <Header>
+        <Text style={styles.menu}>Menu</Text>
+      </Header>
+      <Text>Buscador</Text>
+      <CategoryList />
+      <SuggestionList />
     </Home>
   );
 };
@@ -40,12 +43,20 @@ const styles = StyleSheet.create({
   },
 });
 
+const mapStateToProps = state => {
+  console.log('Mi estado', state);
+
+  return {
+    selectedMovie: state.selectedMovie,
+  };
+};
+
 const mapDispatchToProps = {
   getCategoriesList,
   getSuggestionList,
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
-)(AppLayout);
+)(HomeLayout);

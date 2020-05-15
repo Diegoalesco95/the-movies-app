@@ -11,7 +11,14 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, reducer);
 
-const store = createStore(persistedReducer, applyMiddleware(ReduxThunk));
+const store = createStore(
+  persistedReducer,
+  {
+    categoriesList: [],
+    suggestionList: [],
+  },
+  applyMiddleware(ReduxThunk),
+);
 const persistor = persistStore(store);
 
 export {store, persistor};

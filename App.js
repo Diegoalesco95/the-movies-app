@@ -3,14 +3,14 @@ import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import {store, persistor} from './src/store/store';
 
-import AppLayout from './src/main/layouts/appLayout';
+import HomeLayout from './src/main/layouts/homeLayout';
 import {Loading} from './src/main/components/Loading';
 
 export default function App() {
   return (
     <Provider store={store}>
       <PersistGate loading={<Loading />} persistor={persistor}>
-        <AppLayout />
+        <HomeLayout />
       </PersistGate>
     </Provider>
   );

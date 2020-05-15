@@ -1,5 +1,5 @@
 import {getMovies, getSuggestion} from '../../services/api';
-import {GET_CATEGORIES, GET_SUGGESTIONS} from '../types/index';
+import {GET_CATEGORIES, GET_SUGGESTIONS, SET_MOVIE} from '../types/index';
 
 export const setCategoriesList = payload => ({
   type: GET_CATEGORIES,
@@ -10,12 +10,17 @@ export const setSuggestionList = payload => ({
   payload,
 });
 
+export const setMovie = payload => ({
+  type: SET_MOVIE,
+  payload: {movie: payload},
+});
+
 export const getCategoriesList = () => {
+  const fetchData = async () => {
+    const categoriesList = await getMovies();
+    return categoriesList;
+  };
   return dispatch => {
-    const fetchData = async () => {
-      const categoriesList = await getMovies();
-      return categoriesList;
-    };
     fetchData().then(categoriesList => {
       dispatch(setCategoriesList(categoriesList));
     });

@@ -19,6 +19,7 @@ const CategoryList = ({list}) => {
         ListEmptyComponent={() => <Empty text="No hay categorias ☹" />}
         ItemSeparatorComponent={() => <Separator />}
         renderItem={({item}) => <Category {...item} />}
+        initialNumToRender={0}
       />
     </ListComponent>
   );
