@@ -1,9 +1,10 @@
-import {getMovies, getSuggestion} from '../../services/api';
+import {getMovies, getSuggestion, searchMovie} from '../../services/api';
 import {
   GET_CATEGORIES,
   GET_SUGGESTIONS,
   SET_MOVIE,
   DELETE_MOVIE,
+  SET_SEARCH_MOVIE,
 } from '../types/index';
 
 export const setCategoriesList = payload => ({
@@ -23,6 +24,11 @@ export const setMovie = payload => ({
 export const deleteMovie = () => ({
   type: DELETE_MOVIE,
   payload: null,
+});
+
+export const setSearchMovie = payload => ({
+  type: SET_SEARCH_MOVIE,
+  payload: {movie: payload},
 });
 
 export const getCategoriesList = () => {
@@ -45,6 +51,18 @@ export const getSuggestionList = payload => {
   return dispatch => {
     fetchData().then(suggestionList => {
       dispatch(setSuggestionList(suggestionList));
+    });
+  };
+};
+
+export const getSearchMovie = payload => {
+  const fetchData = async () => {
+    const movie = await searchMovie(payload);
+    return movie[0];
+  };
+  return dispatch => {
+    fetchData().then(movie => {
+      dispatch(setSearchMovie(movie));
     });
   };
 };

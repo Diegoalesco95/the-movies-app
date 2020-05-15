@@ -3,6 +3,7 @@ import {
   GET_SUGGESTIONS,
   SET_MOVIE,
   DELETE_MOVIE,
+  SET_SEARCH_MOVIE,
 } from '../types/index';
 
 export default (state, action) => {
@@ -18,6 +19,9 @@ export default (state, action) => {
     }
     case DELETE_MOVIE: {
       return {...state, selectedMovie: action.payload};
+    }
+    case SET_SEARCH_MOVIE: {
+      return {...state, selectedMovie: action.payload.movie};
     }
     default:
       return state;

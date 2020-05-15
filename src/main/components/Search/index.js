@@ -3,12 +3,15 @@ import {View} from 'react-native';
 import MaterialsIcon from 'react-native-vector-icons/MaterialIcons';
 import {Kohana} from 'react-native-textinput-effects';
 import {styles} from './styles';
+import {connect} from 'react-redux';
+import {getSearchMovie} from '../../../providers/actions/index';
 
-export const Search = () => {
+const Search = ({getSearchMovie}) => {
   const [text, setText] = useState('');
+  console.log('Esto es lo que se busca', text);
 
   const handleSubmit = () => {
-    console.log(text);
+    getSearchMovie(text);
   };
 
   const handleChangeText = text => {
@@ -36,3 +39,12 @@ export const Search = () => {
     </View>
   );
 };
+
+const mapDispatchToProps = {
+  getSearchMovie,
+};
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(Search);
