@@ -11,6 +11,7 @@ import {store, persistor} from './src/store/store';
 
 import {getSuggestion, getMovies} from './src/services/api';
 import {GET_CATEGORIES, GET_SUGGESTIONS} from './src/providers/types/index';
+import {Loading} from './src/main/components/Loading';
 
 export default function App() {
   useEffect(() => {
@@ -30,7 +31,7 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <PersistGate loading={<Text>Cargando...</Text>} persistor={persistor}>
+      <PersistGate loading={<Loading />} persistor={persistor}>
         <Home>
           <ScrollView>
             <Header>
