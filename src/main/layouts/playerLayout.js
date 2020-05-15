@@ -3,13 +3,20 @@ import {Text, StyleSheet, ScrollView} from 'react-native';
 import {VideoPlayer} from '../screens/VideoPlayer';
 import {Header} from '../components/Header';
 import {Player} from '../containers/Player';
+import {Close} from '../components/Close';
 
-export const PlayerLayout = () => {
+import {connect} from 'react-redux';
+import {deleteMovie} from '../../providers/actions/index';
+
+const PlayerLayout = ({deleteMovie}) => {
+  const handleClose = () => {
+    deleteMovie();
+  };
   return (
     <VideoPlayer>
       <ScrollView>
         <Header>
-          <Text style={styles.menu}>Menu</Text>
+          <Close onPress={() => handleClose()} />
         </Header>
         <Player />
       </ScrollView>
@@ -17,8 +24,11 @@ export const PlayerLayout = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  menu: {
-    color: '#f0f5f6',
-  },
-});
+const mapDispatchToProps = {
+  deleteMovie,
+};
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(PlayerLayout);

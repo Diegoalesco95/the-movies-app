@@ -12,11 +12,9 @@ import {
   getCategoriesList,
   getSuggestionList,
 } from '../../providers/actions/index';
-import {PlayerLayout} from './playerLayout';
+import PlayerLayout from './playerLayout';
 
 const HomeLayout = ({getCategoriesList, getSuggestionList, selectedMovie}) => {
-  console.log('selectedMovie', selectedMovie);
-
   useEffect(() => {
     getCategoriesList();
     getSuggestionList(20);
@@ -44,8 +42,6 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  console.log('Mi estado', state);
-
   return {
     selectedMovie: state.selectedMovie,
   };

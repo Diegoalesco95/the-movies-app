@@ -1,5 +1,10 @@
 import {getMovies, getSuggestion} from '../../services/api';
-import {GET_CATEGORIES, GET_SUGGESTIONS, SET_MOVIE} from '../types/index';
+import {
+  GET_CATEGORIES,
+  GET_SUGGESTIONS,
+  SET_MOVIE,
+  DELETE_MOVIE,
+} from '../types/index';
 
 export const setCategoriesList = payload => ({
   type: GET_CATEGORIES,
@@ -13,6 +18,11 @@ export const setSuggestionList = payload => ({
 export const setMovie = payload => ({
   type: SET_MOVIE,
   payload: {movie: payload},
+});
+
+export const deleteMovie = () => ({
+  type: DELETE_MOVIE,
+  payload: null,
 });
 
 export const getCategoriesList = () => {

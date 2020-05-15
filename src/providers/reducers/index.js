@@ -1,4 +1,9 @@
-import {GET_CATEGORIES, GET_SUGGESTIONS, SET_MOVIE} from '../types/index';
+import {
+  GET_CATEGORIES,
+  GET_SUGGESTIONS,
+  SET_MOVIE,
+  DELETE_MOVIE,
+} from '../types/index';
 
 export default (state, action) => {
   switch (action.type) {
@@ -10,6 +15,9 @@ export default (state, action) => {
     }
     case SET_MOVIE: {
       return {...state, selectedMovie: action.payload.movie};
+    }
+    case DELETE_MOVIE: {
+      return {...state, selectedMovie: action.payload};
     }
     default:
       return state;
