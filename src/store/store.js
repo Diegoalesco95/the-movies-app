@@ -16,8 +16,8 @@ const persistedReducer = persistReducer(persistConfig, reducer);
 const store = createStore(
   persistedReducer,
   {
-    categoriesList: [],
-    suggestionList: [],
+    categoriesList: {loading: true},
+    suggestionList: {loading: true},
   },
   applyMiddleware(ReduxThunk),
 );

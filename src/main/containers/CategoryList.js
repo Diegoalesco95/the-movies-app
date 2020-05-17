@@ -5,11 +5,27 @@ import {Empty} from '../components/Empty';
 import {Separator} from '../components/Separator';
 import {Category} from '../components/Category';
 import {connect} from 'react-redux';
+import {Error} from '../components/Error';
+import {CaterorySkeleton} from '../components/Skeleton';
 
-const CategoryList = ({list}) => {
+const CategoryList = ({list, errorMsg, loading}) => {
   const KeyExtractor = item => {
     return item.id.toString();
   };
+  if (loading) {
+    return (
+      <ListComponent title="Categorias" image={true}>
+        <CaterorySkeleton />
+      </ListComponent>
+    );
+  }
+  if (errorMsg) {
+    return (
+      <ListComponent title="Categorias" image={true}>
+        <Error />
+      </ListComponent>
+    );
+  }
   return (
     <ListComponent title="Categorias" image={true}>
       <FlatList
@@ -26,7 +42,9 @@ const CategoryList = ({list}) => {
 
 const mapStateToProps = state => {
   return {
-    list: state.categoriesList,
+    list: state.categoriesList.categories,
+    errorMsg: state.categoriesList.errorMsg,
+    loading: state.categoriesList.loading,
   };
 };
 

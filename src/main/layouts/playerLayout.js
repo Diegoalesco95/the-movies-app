@@ -7,8 +7,9 @@ import {Close} from '../components/Close';
 import {Details} from '../components/Details';
 import {connect} from 'react-redux';
 import {deleteMovie} from '../../providers/actions/index';
+import {Error} from '../components/Error';
 
-const PlayerLayout = ({deleteMovie, movie}) => {
+const PlayerLayout = ({deleteMovie, movie, errorMsg}) => {
   const [opacity, setOpacity] = useState(new Animated.Value(0));
   useEffect(() => {
     Animated.timing(opacity, {
@@ -21,6 +22,25 @@ const PlayerLayout = ({deleteMovie, movie}) => {
   const handleClose = () => {
     deleteMovie();
   };
+
+  if (errorMsg) {
+    return (
+      <Animated.View style={{flex: 1, opacity: opacity}}>
+        <VideoPlayer>
+          <ScrollView>
+            <Header>
+              <Close onPress={() => handleClose()} />
+            </Header>
+            <Error
+              errorMsg={
+                'Lo siento, la pelicula que esta buscando no se encontró. Por favor intente con otra búsqueda'
+              }
+            />
+          </ScrollView>
+        </VideoPlayer>
+      </Animated.View>
+    );
+  }
   return (
     <Animated.View style={{flex: 1, opacity: opacity}}>
       <VideoPlayer>
@@ -37,8 +57,10 @@ const PlayerLayout = ({deleteMovie, movie}) => {
 };
 
 const mapStateToProps = state => {
+  console.log('Este es mi estado', state);
   return {
-    movie: state.selectedMovie,
+    movie: state.selectedMovie.movie,
+    errorMsg: state.selectedMovie.errorMsg,
   };
 };
 
