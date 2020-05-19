@@ -1,6 +1,9 @@
 import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
+  menu: {
+    backgroundColor: '#0e151e',
+  },
   logo: {
     width: 100,
     height: 30,
@@ -8,7 +11,6 @@ export const styles = StyleSheet.create({
   },
   container: {
     padding: 10,
-    backgroundColor: '#0e151e',
     flexDirection: 'row',
   },
   right: {

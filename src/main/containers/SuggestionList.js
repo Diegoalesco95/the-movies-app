@@ -10,12 +10,13 @@ import {setMovie} from '../../providers/actions/index';
 import {Error} from '../components/Error';
 import {SuggestionSkeleton} from '../components/Skeleton';
 
-const SuggestionList = ({list, errorMsg, loading, setMovie}) => {
+const SuggestionList = ({list, errorMsg, loading, setMovie, navigation}) => {
   const KeyExtractor = item => {
     return item.id.toString();
   };
   const movieHandler = item => {
     setMovie(item);
+    navigation.navigate('Player');
   };
   if (loading) {
     return (

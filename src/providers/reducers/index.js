@@ -2,7 +2,6 @@ import {
   GET_CATEGORIES,
   GET_SUGGESTIONS,
   SET_MOVIE,
-  DELETE_MOVIE,
   SET_SEARCH_MOVIE,
   SET_ERROR_CATEGORIES,
   SET_ERROR_SUGGESTIONS,
@@ -32,12 +31,6 @@ export default (state, action) => {
       return {
         ...state,
         selectedMovie: {...state.selectedMovie, ...action.payload},
-      };
-    }
-    case DELETE_MOVIE: {
-      return {
-        ...state,
-        selectedMovie: action.payload,
       };
     }
     case SET_SEARCH_MOVIE: {

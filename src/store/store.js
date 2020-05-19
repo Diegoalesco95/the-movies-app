@@ -7,7 +7,7 @@ import reducer from '../providers/reducers';
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  blacklist: ['selectedMovie'],
+  blacklist: ['selectedMovie', 'navigation'],
   timeout: null,
 };
 
