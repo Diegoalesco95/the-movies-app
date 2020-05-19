@@ -19,7 +19,7 @@ const HomeLayout = ({getCategoriesList, getSuggestionList, navigation}) => {
   return (
     <Home>
       <Search />
-      <CategoryList />
+      <CategoryList navigation={navigation} />
       <SuggestionList navigation={navigation} />
     </Home>
   );

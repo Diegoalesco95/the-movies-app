@@ -1,14 +1,22 @@
-import {getMovies, getSuggestion, searchMovie} from '../../services/api';
+import {
+  getMovies,
+  getSuggestion,
+  searchMovie,
+  getMoviesForCategories,
+} from '../../services/api';
 import {
   GET_CATEGORIES,
   GET_SUGGESTIONS,
+  GET_MOVIES_FOR_CATEGORIES,
   SET_MOVIE,
   SET_SEARCH_MOVIE,
   SET_ERROR_CATEGORIES,
   SET_ERROR_SUGGESTIONS,
   SET_ERROR_MOVIE,
+  SET_ERROR_MOVIES_FOR_CATEGORIES,
   SET_LOADING_CATEGORIES,
   SET_LOADING_SUGGESTIONS,
+  SET_LOADING_MOVIES_FOR_CATEGORIES,
 } from '../types/index';
 
 export const setCategoriesList = payload => ({
@@ -17,6 +25,11 @@ export const setCategoriesList = payload => ({
 });
 export const setSuggestionList = payload => ({
   type: GET_SUGGESTIONS,
+  payload,
+});
+
+export const setMoviesForCategories = payload => ({
+  type: GET_MOVIES_FOR_CATEGORIES,
   payload,
 });
 
@@ -42,12 +55,20 @@ export const setErrorMovie = payload => ({
   type: SET_ERROR_MOVIE,
   payload,
 });
+export const setErrorMoviesForCategories = payload => ({
+  type: SET_ERROR_MOVIES_FOR_CATEGORIES,
+  payload,
+});
 export const setLoadingcategories = payload => ({
   type: SET_LOADING_CATEGORIES,
   payload,
 });
 export const setLoadingSuggestions = payload => ({
   type: SET_LOADING_SUGGESTIONS,
+  payload,
+});
+export const setLoadingMoviesForCategories = payload => ({
+  type: SET_LOADING_MOVIES_FOR_CATEGORIES,
   payload,
 });
 
@@ -113,5 +134,29 @@ export const getSearchMovie = payload => {
         dispatch(setErrorMovie(null));
       })
       .catch(error => dispatch(setErrorMovie(error.message)));
+  };
+};
+
+export const getMoviesForCategoriesList = payload => {
+  const fetchData = async () => {
+    const moviesCategoriesList = await getMoviesForCategories(payload);
+    return moviesCategoriesList;
+  };
+  return dispatch => {
+    dispatch(setLoadingMoviesForCategories(true));
+    fetchData()
+      .then(moviesCategoriesList => {
+        dispatch(setMoviesForCategories(moviesCategoriesList));
+      })
+      .then(() => {
+        dispatch(setErrorMoviesForCategories(null));
+      })
+      .then(() => {
+        dispatch(setLoadingMoviesForCategories(false));
+      })
+      .catch(error => dispatch(setErrorMoviesForCategories(error.message)))
+      .then(() => {
+        dispatch(setLoadingMoviesForCategories(false));
+      });
   };
 };
