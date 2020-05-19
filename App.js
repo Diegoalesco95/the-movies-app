@@ -6,14 +6,14 @@ import {NavigationContainer} from '@react-navigation/native';
 
 import {Loading} from './src/main/components/Loading';
 
-import {Main} from './src/navigation';
+import {TabNavigator} from './src/navigation';
 
 export default function App() {
   return (
     <Provider store={store}>
       <PersistGate loading={<Loading />} persistor={persistor}>
         <NavigationContainer>
-          <Main />
+          <TabNavigator />
         </NavigationContainer>
       </PersistGate>
     </Provider>
