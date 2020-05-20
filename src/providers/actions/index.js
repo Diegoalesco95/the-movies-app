@@ -136,6 +136,7 @@ export const getSearchMovie = payload => {
     return movie;
   };
   return dispatch => {
+    dispatch(setLoadingSuggestions(true));
     fetchData()
       .then(movie => {
         dispatch(setSearchMovie(movie));
@@ -144,7 +145,13 @@ export const getSearchMovie = payload => {
       .then(() => {
         dispatch(setErrorMovie(null));
       })
-      .catch(error => dispatch(setErrorMovie(error.message)));
+      .then(() => {
+        dispatch(setLoadingSuggestions(false));
+      })
+      .catch(error => dispatch(setErrorMovie(error.message)))
+      .then(() => {
+        dispatch(setLoadingSuggestions(false));
+      });
   };
 };
 

@@ -29,19 +29,11 @@ const Main = () => {
         header: () => {
           return <Header />;
         },
+        gestureEnabled: true,
       }}>
       <Stack.Screen name="Home" component={HomeLayout} />
-      <Stack.Screen
-        name="Player"
-        component={PlayerLayout}
-        gestureEnabled={true}
-      />
-      <Stack.Screen
-        name="Categories"
-        component={CategoryLayout}
-        gestureEnabled={true}
-      />
-      {/* <Stack.Screen name="Root" component={DrawerNavigator} /> */}
+      <Stack.Screen name="Player" component={PlayerLayout} />
+      <Stack.Screen name="Categories" component={CategoryLayout} />
     </Stack.Navigator>
   );
 };

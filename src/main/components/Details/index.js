@@ -25,7 +25,7 @@ export const Details = ({
             <WebView source={{html: makeHtml(yt_trailer_code)}} />
           </View>
         ) : (
-          ''
+          <Text />
         )}
       </View>
     </View>
