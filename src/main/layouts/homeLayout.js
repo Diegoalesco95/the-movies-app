@@ -18,7 +18,7 @@ const HomeLayout = ({getCategoriesList, getSuggestionList, navigation}) => {
 
   return (
     <Home>
-      <Search />
+      <Search navigation={navigation} />
       <CategoryList navigation={navigation} />
       <SuggestionList navigation={navigation} />
     </Home>

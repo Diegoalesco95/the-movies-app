@@ -11,6 +11,8 @@ import {
   SET_LOADING_CATEGORIES,
   SET_LOADING_SUGGESTIONS,
   SET_LOADING_MOVIES_FOR_CATEGORIES,
+  SET_USER,
+  REMOVE_USER,
 } from '../types/index';
 
 export default (state, action) => {
@@ -48,7 +50,7 @@ export default (state, action) => {
     case SET_SEARCH_MOVIE: {
       return {
         ...state,
-        selectedMovie: {...state.selectedMovie, ...action.payload},
+        searchMovie: {...state.searchMovie, ...action.payload},
       };
     }
     case SET_ERROR_CATEGORIES: {
@@ -106,6 +108,20 @@ export default (state, action) => {
           ...state.moviesForCategories,
           loading: action.payload,
         },
+      };
+    }
+    case SET_USER: {
+      return {
+        ...state,
+        user: action.payload,
+        isLogin: true,
+      };
+    }
+    case REMOVE_USER: {
+      return {
+        ...state,
+        isLogin: action.payload,
+        user: null,
       };
     }
     default:

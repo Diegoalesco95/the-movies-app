@@ -6,15 +6,18 @@ import HomeLayout from '../main/layouts/homeLayout';
 import PlayerLayout from '../main/layouts/playerLayout';
 import CategoryLayout from '../main/layouts/categoryLayout';
 import {About} from '../main/layouts/aboutLayout';
-import {Profile} from '../main/layouts/profileLayout';
-import {Lucky} from '../main/layouts/luckyLayout';
+import profileLayout from '../main/layouts/profileLayout';
+import LuckyLayout from '../main/layouts/luckyLayout';
+import Login from '../main/layouts/loginLayout';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
+
+import {connect} from 'react-redux';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-export const Main = () => {
+const Main = () => {
   return (
     <Stack.Navigator
       initialRouteName="Home"
@@ -40,7 +43,7 @@ export const Main = () => {
   );
 };
 
-export const TabNavigator = () => {
+const TabNavigator = ({isLogin}) => {
   return (
     <Tab.Navigator
       tabBarOptions={{
@@ -49,7 +52,7 @@ export const TabNavigator = () => {
       }}>
       <Tab.Screen
         name="Home"
-        component={Main}
+        component={isLogin ? Main : Login}
         options={{
           tabBarLabel: 'Inicio',
           tabBarIcon: ({color, size}) => (
@@ -59,9 +62,9 @@ export const TabNavigator = () => {
       />
       <Tab.Screen
         name="Lucky"
-        component={Lucky}
+        component={isLogin ? LuckyLayout : Login}
         options={{
-          tabBarLabel: 'Voy a tener suerte',
+          tabBarLabel: 'Buscar',
           tabBarIcon: ({color, size}) => (
             <Icon name="search" size={size} color={color} />
           ),
@@ -69,7 +72,7 @@ export const TabNavigator = () => {
       />
       <Tab.Screen
         name="Profile"
-        component={Profile}
+        component={profileLayout}
         options={{
           tabBarLabel: 'Mi perfil',
           tabBarIcon: ({color, size}) => (
@@ -90,3 +93,11 @@ export const TabNavigator = () => {
     </Tab.Navigator>
   );
 };
+
+const mapStateToProps = state => {
+  return {
+    isLogin: state.isLogin,
+  };
+};
+
+export default connect(mapStateToProps)(TabNavigator);

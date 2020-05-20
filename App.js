@@ -6,7 +6,7 @@ import {NavigationContainer} from '@react-navigation/native';
 
 import {Loading} from './src/main/components/Loading';
 
-import {TabNavigator} from './src/navigation';
+import TabNavigator from './src/navigation';
 
 export default function App() {
   return (

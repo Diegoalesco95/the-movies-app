@@ -17,6 +17,8 @@ import {
   SET_LOADING_CATEGORIES,
   SET_LOADING_SUGGESTIONS,
   SET_LOADING_MOVIES_FOR_CATEGORIES,
+  SET_USER,
+  REMOVE_USER,
 } from '../types/index';
 
 export const setCategoriesList = payload => ({
@@ -40,7 +42,7 @@ export const setMovie = payload => ({
 
 export const setSearchMovie = payload => ({
   type: SET_SEARCH_MOVIE,
-  payload: {movie: payload},
+  payload: {movies: payload},
 });
 
 export const setErrorCategories = payload => ({
@@ -69,6 +71,14 @@ export const setLoadingSuggestions = payload => ({
 });
 export const setLoadingMoviesForCategories = payload => ({
   type: SET_LOADING_MOVIES_FOR_CATEGORIES,
+  payload,
+});
+export const setUser = payload => ({
+  type: SET_USER,
+  payload,
+});
+export const removeUser = payload => ({
+  type: REMOVE_USER,
   payload,
 });
 
@@ -123,12 +133,13 @@ export const getSuggestionList = payload => {
 export const getSearchMovie = payload => {
   const fetchData = async () => {
     const movie = await searchMovie(payload);
-    return movie[0];
+    return movie;
   };
   return dispatch => {
     fetchData()
       .then(movie => {
         dispatch(setSearchMovie(movie));
+        dispatch(setMovie(movie[0]));
       })
       .then(() => {
         dispatch(setErrorMovie(null));

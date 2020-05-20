@@ -12,3 +12,6 @@ export const SET_ERROR_MOVIE = 'set_error_movie';
 export const SET_LOADING_CATEGORIES = 'set_loading_categories';
 export const SET_LOADING_SUGGESTIONS = 'set_loading_suggestions';
 export const SET_LOADING_MOVIES_FOR_CATEGORIES = 'set_movies_for_categories';
+
+export const SET_USER = 'set_user';
+export const REMOVE_USER = 'remove_user';
