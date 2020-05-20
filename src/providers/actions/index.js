@@ -1,15 +1,24 @@
-import {getMovies, getSuggestion, searchMovie} from '../../services/api';
+import {
+  getMovies,
+  getSuggestion,
+  searchMovie,
+  getMoviesForCategories,
+} from '../../services/api';
 import {
   GET_CATEGORIES,
   GET_SUGGESTIONS,
+  GET_MOVIES_FOR_CATEGORIES,
   SET_MOVIE,
-  DELETE_MOVIE,
   SET_SEARCH_MOVIE,
   SET_ERROR_CATEGORIES,
   SET_ERROR_SUGGESTIONS,
   SET_ERROR_MOVIE,
+  SET_ERROR_MOVIES_FOR_CATEGORIES,
   SET_LOADING_CATEGORIES,
   SET_LOADING_SUGGESTIONS,
+  SET_LOADING_MOVIES_FOR_CATEGORIES,
+  SET_USER,
+  REMOVE_USER,
 } from '../types/index';
 
 export const setCategoriesList = payload => ({
@@ -21,19 +30,19 @@ export const setSuggestionList = payload => ({
   payload,
 });
 
+export const setMoviesForCategories = payload => ({
+  type: GET_MOVIES_FOR_CATEGORIES,
+  payload,
+});
+
 export const setMovie = payload => ({
   type: SET_MOVIE,
   payload: {movie: payload},
 });
 
-export const deleteMovie = () => ({
-  type: DELETE_MOVIE,
-  payload: null,
-});
-
 export const setSearchMovie = payload => ({
   type: SET_SEARCH_MOVIE,
-  payload: {movie: payload},
+  payload: {movies: payload},
 });
 
 export const setErrorCategories = payload => ({
@@ -48,12 +57,28 @@ export const setErrorMovie = payload => ({
   type: SET_ERROR_MOVIE,
   payload,
 });
+export const setErrorMoviesForCategories = payload => ({
+  type: SET_ERROR_MOVIES_FOR_CATEGORIES,
+  payload,
+});
 export const setLoadingcategories = payload => ({
   type: SET_LOADING_CATEGORIES,
   payload,
 });
 export const setLoadingSuggestions = payload => ({
   type: SET_LOADING_SUGGESTIONS,
+  payload,
+});
+export const setLoadingMoviesForCategories = payload => ({
+  type: SET_LOADING_MOVIES_FOR_CATEGORIES,
+  payload,
+});
+export const setUser = payload => ({
+  type: SET_USER,
+  payload,
+});
+export const removeUser = payload => ({
+  type: REMOVE_USER,
   payload,
 });
 
@@ -108,16 +133,48 @@ export const getSuggestionList = payload => {
 export const getSearchMovie = payload => {
   const fetchData = async () => {
     const movie = await searchMovie(payload);
-    return movie[0];
+    return movie;
   };
   return dispatch => {
+    dispatch(setLoadingSuggestions(true));
     fetchData()
       .then(movie => {
         dispatch(setSearchMovie(movie));
+        dispatch(setMovie(movie[0]));
       })
       .then(() => {
         dispatch(setErrorMovie(null));
       })
-      .catch(error => dispatch(setErrorMovie(error.message)));
+      .then(() => {
+        dispatch(setLoadingSuggestions(false));
+      })
+      .catch(error => dispatch(setErrorMovie(error.message)))
+      .then(() => {
+        dispatch(setLoadingSuggestions(false));
+      });
+  };
+};
+
+export const getMoviesForCategoriesList = payload => {
+  const fetchData = async () => {
+    const moviesCategoriesList = await getMoviesForCategories(payload);
+    return moviesCategoriesList;
+  };
+  return dispatch => {
+    dispatch(setLoadingMoviesForCategories(true));
+    fetchData()
+      .then(moviesCategoriesList => {
+        dispatch(setMoviesForCategories(moviesCategoriesList));
+      })
+      .then(() => {
+        dispatch(setErrorMoviesForCategories(null));
+      })
+      .then(() => {
+        dispatch(setLoadingMoviesForCategories(false));
+      })
+      .catch(error => dispatch(setErrorMoviesForCategories(error.message)))
+      .then(() => {
+        dispatch(setLoadingMoviesForCategories(false));
+      });
   };
 };

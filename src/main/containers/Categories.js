@@ -10,7 +10,9 @@ import {setMovie} from '../../providers/actions/index';
 import {Error} from '../components/Error';
 import {SuggestionSkeleton} from '../components/Skeleton';
 
-const SuggestionList = ({list, errorMsg, loading, setMovie, navigation}) => {
+const Categories = ({list, errorMsg, loading, setMovie, navigation, route}) => {
+  const {title} = route.params;
+
   const KeyExtractor = item => {
     return item.id.toString();
   };
@@ -20,20 +22,20 @@ const SuggestionList = ({list, errorMsg, loading, setMovie, navigation}) => {
   };
   if (loading) {
     return (
-      <ListComponent title="Recomendado para ti">
+      <ListComponent title={title}>
         <SuggestionSkeleton />
       </ListComponent>
     );
   }
   if (errorMsg) {
     return (
-      <ListComponent title="Recomendado para ti">
+      <ListComponent title={title}>
         <Error />
       </ListComponent>
     );
   }
   return (
-    <ListComponent title="Recomendado para ti">
+    <ListComponent title={title}>
       <FlatList
         data={list}
         keyExtractor={KeyExtractor}
@@ -49,9 +51,9 @@ const SuggestionList = ({list, errorMsg, loading, setMovie, navigation}) => {
 
 const mapStateToProps = state => {
   return {
-    list: state.suggestionList.suggestions,
-    errorMsg: state.suggestionList.errorMsg,
-    loading: state.suggestionList.loading,
+    list: state.moviesForCategories.categories,
+    errorMsg: state.moviesForCategories.errorMsg,
+    loading: state.moviesForCategories.loading,
   };
 };
 
@@ -62,4 +64,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(SuggestionList);
+)(Categories);

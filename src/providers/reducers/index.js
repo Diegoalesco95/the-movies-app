@@ -2,13 +2,17 @@ import {
   GET_CATEGORIES,
   GET_SUGGESTIONS,
   SET_MOVIE,
-  DELETE_MOVIE,
+  GET_MOVIES_FOR_CATEGORIES,
   SET_SEARCH_MOVIE,
   SET_ERROR_CATEGORIES,
   SET_ERROR_SUGGESTIONS,
   SET_ERROR_MOVIE,
+  SET_ERROR_MOVIES_FOR_CATEGORIES,
   SET_LOADING_CATEGORIES,
   SET_LOADING_SUGGESTIONS,
+  SET_LOADING_MOVIES_FOR_CATEGORIES,
+  SET_USER,
+  REMOVE_USER,
 } from '../types/index';
 
 export default (state, action) => {
@@ -28,22 +32,25 @@ export default (state, action) => {
         },
       };
     }
+    case GET_MOVIES_FOR_CATEGORIES: {
+      return {
+        ...state,
+        moviesForCategories: {
+          ...state.moviesForCategories,
+          categories: action.payload,
+        },
+      };
+    }
     case SET_MOVIE: {
       return {
         ...state,
         selectedMovie: {...state.selectedMovie, ...action.payload},
       };
     }
-    case DELETE_MOVIE: {
-      return {
-        ...state,
-        selectedMovie: action.payload,
-      };
-    }
     case SET_SEARCH_MOVIE: {
       return {
         ...state,
-        selectedMovie: {...state.selectedMovie, ...action.payload},
+        searchMovie: {...state.searchMovie, ...action.payload},
       };
     }
     case SET_ERROR_CATEGORIES: {
@@ -67,6 +74,15 @@ export default (state, action) => {
         selectedMovie: {...state.selectedMovie, errorMsg: action.payload},
       };
     }
+    case SET_ERROR_MOVIES_FOR_CATEGORIES: {
+      return {
+        ...state,
+        moviesForCategories: {
+          ...state.moviesForCategories,
+          errorMsg: action.payload,
+        },
+      };
+    }
     case SET_LOADING_CATEGORIES: {
       return {
         ...state,
@@ -83,6 +99,29 @@ export default (state, action) => {
           ...state.suggestionList,
           loading: action.payload,
         },
+      };
+    }
+    case SET_LOADING_MOVIES_FOR_CATEGORIES: {
+      return {
+        ...state,
+        moviesForCategories: {
+          ...state.moviesForCategories,
+          loading: action.payload,
+        },
+      };
+    }
+    case SET_USER: {
+      return {
+        ...state,
+        user: action.payload,
+        isLogin: true,
+      };
+    }
+    case REMOVE_USER: {
+      return {
+        ...state,
+        isLogin: action.payload,
+        user: null,
       };
     }
     default:

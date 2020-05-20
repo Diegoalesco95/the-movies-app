@@ -1,15 +1,18 @@
 import React, {useState} from 'react';
-import {View} from 'react-native';
+import {View, TextInput} from 'react-native';
 import MaterialsIcon from 'react-native-vector-icons/MaterialIcons';
 import {Kohana} from 'react-native-textinput-effects';
 import {styles} from './styles';
 import {connect} from 'react-redux';
 import {getSearchMovie} from '../../../providers/actions/index';
 
-const Search = ({getSearchMovie}) => {
+const Search = ({getSearchMovie, navigation}) => {
   const [text, setText] = useState('');
   const handleSubmit = () => {
     getSearchMovie(text);
+    if (navigation) {
+      navigation.navigate('Player');
+    }
   };
 
   const handleChangeText = text => {
