@@ -11,19 +11,19 @@
 
 ## Vista de Home
 
-![Home Preview](/.readme-static/images/home.png)
+![Home Preview](/.readme-static/Images/home.png)
 
 ## Vista de Búsqueda
 
-![Login Preview](/.readme-static/images/search.png)
+![Login Preview](/.readme-static/Images/search.png)
 
 ## Vista del Videoplayer
 
-![Login Preview](/.readme-static/images/videoplayer.png)
+![Login Preview](/.readme-static/Images/videoplayer.png)
 
 ## Vista del drawer menu
 
-![Login Preview](/.readme-static/images/drawermenu.png)
+![Login Preview](/.readme-static/Images/drawermenu.png)
 
 ## [Archivo APK](./.readme-static/APK)
 
