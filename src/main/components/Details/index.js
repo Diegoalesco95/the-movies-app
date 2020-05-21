@@ -20,9 +20,13 @@ export const Details = ({
           <Image style={styles.cover} source={{uri: medium_cover_image}} />
           <Text style={styles.description}>{description_full}</Text>
         </View>
-        <View style={styles.trailer}>
-          <WebView source={{html: makeHtml(yt_trailer_code)}} />
-        </View>
+        {yt_trailer_code ? (
+          <View style={styles.trailer}>
+            <WebView source={{html: makeHtml(yt_trailer_code)}} />
+          </View>
+        ) : (
+          <Text />
+        )}
       </View>
     </View>
   );

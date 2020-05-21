@@ -7,14 +7,31 @@ import {Movie} from '../components/Movie';
 import {connect} from 'react-redux';
 
 import {setMovie} from '../../providers/actions/index';
+import {Error} from '../components/Error';
+import {SuggestionSkeleton} from '../components/Skeleton';
 
-const SuggestionList = ({list, setMovie}) => {
+const SuggestionList = ({list, errorMsg, loading, setMovie, navigation}) => {
   const KeyExtractor = item => {
     return item.id.toString();
   };
   const movieHandler = item => {
     setMovie(item);
+    navigation.navigate('Player');
   };
+  if (loading) {
+    return (
+      <ListComponent title="Recomendado para ti">
+        <SuggestionSkeleton />
+      </ListComponent>
+    );
+  }
+  if (errorMsg) {
+    return (
+      <ListComponent title="Recomendado para ti">
+        <Error />
+      </ListComponent>
+    );
+  }
   return (
     <ListComponent title="Recomendado para ti">
       <FlatList
@@ -32,7 +49,9 @@ const SuggestionList = ({list, setMovie}) => {
 
 const mapStateToProps = state => {
   return {
-    list: state.suggestionList,
+    list: state.suggestionList.suggestions,
+    errorMsg: state.suggestionList.errorMsg,
+    loading: state.suggestionList.loading,
   };
 };
 

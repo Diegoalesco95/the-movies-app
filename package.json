@@ -1,6 +1,7 @@
 {
   "name": "the-movies-app",
   "version": "0.0.1",
+  "description": "Proyecto de aprendizaje de React Native",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -9,12 +10,37 @@
     "test": "jest",
     "lint": "eslint ."
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Diegoalesco95/the-movies-app.git"
+  },
+  "keywords": [
+    "react native",
+    "mobile app"
+  ],
+  "author": "Diego Osorio <Diegoalesco95@hotmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Diegoalesco95/the-movies-app/issues"
+  },
+  "homepage": "https://github.com/Diegoalesco95/the-movies-app#readme",
   "dependencies": {
     "@react-native-community/async-storage": "^1.10.1",
+    "@react-native-community/masked-view": "^0.1.10",
     "@react-native-community/slider": "^2.0.9",
+    "@react-navigation/bottom-tabs": "^5.4.5",
+    "@react-navigation/drawer": "^5.7.7",
+    "@react-navigation/native": "^5.4.0",
+    "@react-navigation/stack": "^5.3.7",
     "react": "16.11.0",
     "react-native": "0.62.2",
+    "react-native-gesture-handler": "^1.6.1",
+    "react-native-linear-gradient": "^2.5.6",
     "react-native-orientation-locker": "^1.1.8",
+    "react-native-reanimated": "^1.8.0",
+    "react-native-safe-area-context": "^1.0.0",
+    "react-native-screens": "^2.7.0",
+    "react-native-skeleton-placeholder": "^2.0.7",
     "react-native-textinput-effects": "^0.6.1",
     "react-native-vector-icons": "^6.6.0",
     "react-native-video": "^4.4.5",

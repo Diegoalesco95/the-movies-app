@@ -7,7 +7,7 @@ import reducer from '../providers/reducers';
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  blacklist: ['selectedMovie'],
+  blacklist: ['selectedMovie', 'navigation', 'searchMovie'],
   timeout: null,
 };
 
@@ -16,8 +16,10 @@ const persistedReducer = persistReducer(persistConfig, reducer);
 const store = createStore(
   persistedReducer,
   {
-    categoriesList: [],
-    suggestionList: [],
+    categoriesList: {loading: true},
+    suggestionList: {loading: true},
+    isLogin: false,
+    searchMovie: [],
   },
   applyMiddleware(ReduxThunk),
 );
